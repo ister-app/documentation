@@ -1,0 +1,38 @@
+{
+  "link.title.Documentation": {
+    "message": "Documentatie",
+    "description": "The title of the footer links column with title=Documentation in the footer"
+  },
+  "link.title.Source code": {
+    "message": "Broncode",
+    "description": "The title of the footer links column with title=Source code in the footer"
+  },
+  "link.item.label.Player guide": {
+    "message": "Playergids",
+    "description": "The label of footer link with label=Player guide linking to /player"
+  },
+  "link.item.label.Server administration": {
+    "message": "Serverbeheer",
+    "description": "The label of footer link with label=Server administration linking to /server"
+  },
+  "link.item.label.Helm chart": {
+    "message": "Helm-chart",
+    "description": "The label of footer link with label=Helm chart linking to https://github.com/ister-app/chart"
+  },
+  "link.item.label.Development": {
+    "message": "Development",
+    "description": "The label of footer link with label=Development linking to /development"
+  },
+  "link.item.label.Player": {
+    "message": "Player",
+    "description": "The label of footer link with label=Player linking to https://github.com/ister-app/player"
+  },
+  "link.item.label.Server": {
+    "message": "Server",
+    "description": "The label of footer link with label=Server linking to https://github.com/ister-app/server"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 Ister. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

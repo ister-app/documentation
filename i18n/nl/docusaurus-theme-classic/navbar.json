@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Ister",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Ister logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Player": {
+    "message": "Player",
+    "description": "Navbar item with label Player"
+  },
+  "item.label.Server": {
+    "message": "Server",
+    "description": "Navbar item with label Server"
+  },
+  "item.label.Helm Chart": {
+    "message": "Helm-chart",
+    "description": "Navbar item with label Helm Chart"
+  },
+  "item.label.Development": {
+    "message": "Development",
+    "description": "Navbar item with label Development"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

@@ -1,0 +1,80 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroInner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.heroText {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroImage {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.heroImage img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .heroInner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sections {
+  padding: 3rem 0 4rem;
+}
+
+.sectionsTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sectionCard {
+  height: 100%;
+  display: block;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sectionCard:hover {
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}

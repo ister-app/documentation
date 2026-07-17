@@ -1,0 +1,60 @@
+name: Build and deploy documentation site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # After the nightly releases of server (~02:00 UTC) and player (~04:00 UTC),
+    # so the site picks up their fresh docs zips.
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch documentation zips from latest releases
+        env:
+          # GITHUB_TOKEN suffices while the ister-app repos are public; set the
+          # DOCS_SYNC_TOKEN secret (fine-grained PAT, Contents:read on
+          # player/server/chart) if they ever go private.
+          GH_TOKEN: ${{ secrets.DOCS_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+        run: ./scripts/fetch-releases.sh
+
+      - name: Place docs into the site
+        run: ./scripts/sync-docs.sh
+
+      - name: Build site (en + nl)
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
