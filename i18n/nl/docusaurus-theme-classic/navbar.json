@@ -15,10 +15,6 @@
     "message": "Server",
     "description": "Navbar item with label Server"
   },
-  "item.label.Helm Chart": {
-    "message": "Helm-chart",
-    "description": "Navbar item with label Helm Chart"
-  },
   "item.label.Development": {
     "message": "Development",
     "description": "Navbar item with label Development"

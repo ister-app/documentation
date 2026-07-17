@@ -15,10 +15,6 @@
     "message": "Serverbeheer",
     "description": "The label of footer link with label=Server administration linking to /server"
   },
-  "link.item.label.Helm chart": {
-    "message": "Helm-chart",
-    "description": "The label of footer link with label=Helm chart linking to https://github.com/ister-app/chart"
-  },
   "link.item.label.Development": {
     "message": "Development",
     "description": "The label of footer link with label=Development linking to /development"
@@ -34,5 +30,9 @@
   "copyright": {
     "message": "Copyright © 2026 Ister. Built with Docusaurus.",
     "description": "The footer copyright"
+  },
+  "link.item.label.Helm installation": {
+    "message": "Helm-installatie",
+    "description": "The label of footer link with label=Helm installation linking to /server/installation-helm"
   }
 }

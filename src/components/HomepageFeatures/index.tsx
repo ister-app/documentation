@@ -77,7 +77,7 @@ const FeatureList: FeatureItem[] = [
         RabbitMQ and Typesense to any Kubernetes cluster.
       </Translate>
     ),
-    to: '/chart',
+    to: '/server/installation-helm',
   },
 ];
 

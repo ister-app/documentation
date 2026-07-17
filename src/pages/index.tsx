@@ -29,7 +29,7 @@ function HomepageHeader() {
               <Link className="button button--secondary button--lg" to="/player">
                 <Translate id="homepage.cta.player">Get the player</Translate>
               </Link>
-              <Link className="button button--outline button--secondary button--lg" to="/chart">
+              <Link className="button button--outline button--secondary button--lg" to="/server/installation-helm">
                 <Translate id="homepage.cta.helm">Install with Helm</Translate>
               </Link>
             </div>
@@ -75,7 +75,7 @@ const sections = [
         Deploy the full stack to Kubernetes with a single Helm install.
       </Translate>
     ),
-    to: '/chart',
+    to: '/server/installation-helm',
   },
   {
     title: <Translate id="homepage.section.development">Development</Translate>,

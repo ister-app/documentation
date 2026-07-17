@@ -10,7 +10,7 @@ Each repo attaches a docs zip to its GitHub releases:
 |---|---|---|---|
 | Player guide | `/player` | [ister-app/player](https://github.com/ister-app/player) | `player-docs-<version>.zip` (`doc/user/`) |
 | Server administration | `/server` | [ister-app/server](https://github.com/ister-app/server) | `server-docs-<version>.zip` (`doc/admin/`) |
-| Helm chart | `/chart` | [ister-app/chart](https://github.com/ister-app/chart) | `ister-chart-docs-<version>.zip` (`doc/admin/`) |
+| Helm installation | `/server/installation-helm` | [ister-app/chart](https://github.com/ister-app/chart) | `ister-chart-docs-<version>.zip` (`doc/admin/`), merged into the server section |
 | Development | `/development` | player + server | `doc/architecture/` from both zips |
 
 `scripts/fetch-releases.sh` stages those trees under `downloads/`, and

@@ -22,7 +22,7 @@ function docsPlugin(id: string): [string, PluginContentDocs.Options] {
 const config: Config = {
   title: 'Ister',
   tagline: 'Your personal media server',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   future: {
     v4: true,
@@ -61,7 +61,6 @@ const config: Config = {
   plugins: [
     docsPlugin('player'),
     docsPlugin('server'),
-    docsPlugin('chart'),
     docsPlugin('development'),
   ],
 
@@ -87,12 +86,11 @@ const config: Config = {
       title: 'Ister',
       logo: {
         alt: 'Ister logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {type: 'docSidebar', sidebarId: 'player', docsPluginId: 'player', position: 'left', label: 'Player'},
         {type: 'docSidebar', sidebarId: 'server', docsPluginId: 'server', position: 'left', label: 'Server'},
-        {type: 'docSidebar', sidebarId: 'chart', docsPluginId: 'chart', position: 'left', label: 'Helm Chart'},
         {type: 'docSidebar', sidebarId: 'development', docsPluginId: 'development', position: 'left', label: 'Development'},
         {type: 'localeDropdown', position: 'right'},
         {
@@ -110,7 +108,7 @@ const config: Config = {
           items: [
             {label: 'Player guide', to: '/player'},
             {label: 'Server administration', to: '/server'},
-            {label: 'Helm chart', to: '/chart'},
+            {label: 'Helm installation', to: '/server/installation-helm'},
             {label: 'Development', to: '/development'},
           ],
         },

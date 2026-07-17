@@ -16,7 +16,8 @@ nl_root="i18n/nl"
 nl_docs() { echo "$nl_root/docusaurus-plugin-content-docs-$1/current"; }
 
 # --- 1. clean ---------------------------------------------------------------
-for id in player server chart development; do
+rm -rf docs-chart "$nl_root/docusaurus-plugin-content-docs-chart" # legacy chart instance
+for id in player server development; do
   rm -rf "docs-$id" "$(nl_docs "$id")"
   mkdir -p "docs-$id" "$(nl_docs "$id")"
 done
@@ -30,13 +31,15 @@ cp "$downloads/player/doc/user/nl/"*.md "$(nl_docs player)/"
 mkdir -p "$(nl_docs player)/images"
 cp "$downloads/player/doc/user/images/nl/"* "$(nl_docs player)/images/" 2>/dev/null || true
 
-# server instance <- server doc/admin
+# server instance <- server doc/admin + the chart's Helm installation chapter,
+# slotted right after the server's own installation chapter (01-*)
 cp "$downloads/server/doc/admin/en/"*.md docs-server/
 cp "$downloads/server/doc/admin/nl/"*.md "$(nl_docs server)/"
-
-# chart instance <- chart doc/admin
-cp "$downloads/chart/doc/admin/en/"*.md docs-chart/
-cp "$downloads/chart/doc/admin/nl/"*.md "$(nl_docs chart)/"
+cp "$downloads/chart/doc/admin/en/01-installation-helm.md" docs-server/
+cp "$downloads/chart/doc/admin/nl/01-installation-helm.md" "$(nl_docs server)/"
+for f in docs-server/01-installation-helm.md "$(nl_docs server)/01-installation-helm.md"; do
+  printf -- '---\nsidebar_position: 1.5\n---\n\n%s' "$(cat "$f")" > "$f"
+done
 
 # development instance <- player + server doc/architecture
 for repo in player server; do
@@ -109,7 +112,7 @@ inject_root_slug() {
   [[ -n "$first" ]] || { echo "ERROR: no numbered chapter found in $dir" >&2; exit 1; }
   printf -- '---\nslug: /\n---\n\n%s' "$(cat "$first")" > "$first"
 }
-for id in player server chart; do
+for id in player server; do
   inject_root_slug "docs-$id"
   inject_root_slug "$(nl_docs "$id")"
 done
@@ -140,7 +143,7 @@ rewrite 's{\]\(\.\./\.\./architecture/nl/\d+-([^)#]+)\.md(#[^)]*)?\)}{](/nl/deve
 
 # --- 6. validate -------------------------------------------------------------
 fail=0
-leftovers="$(grep -rnE '\]\(\.\./|\]\([^)]*(architecture|images|admin|user)/(en|nl)/' docs-player docs-server docs-chart docs-development "$nl_root"/docusaurus-plugin-content-docs-* --include='*.md' || true)"
+leftovers="$(grep -rnE '\]\(\.\./|\]\([^)]*(architecture|images|admin|user)/(en|nl)/' docs-player docs-server docs-development "$nl_root"/docusaurus-plugin-content-docs-* --include='*.md' || true)"
 if [[ -n "$leftovers" ]]; then
   echo "ERROR: unresolved relative/locale links after rewrite:" >&2
   echo "$leftovers" >&2
