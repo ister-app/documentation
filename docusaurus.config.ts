@@ -86,7 +86,7 @@ const config: Config = {
       title: 'Ister',
       logo: {
         alt: 'Ister logo',
-        src: 'img/logo.png',
+        src: 'img/logo.svg',
       },
       items: [
         {type: 'docSidebar', sidebarId: 'player', docsPluginId: 'player', position: 'left', label: 'Player'},
