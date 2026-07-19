@@ -135,11 +135,23 @@ rewrite 's{\]\(\.\./images/(en|nl)/}{](images/}g' docs-player/*.md "$(nl_docs pl
 for repo in player server; do
   rewrite 's{\]\(\.\./diagrams/}{](diagrams/}g' \
     "docs-development/$repo/"*.md "$(nl_docs development)/$repo/"*.md
+  # diagrams link back up to a language-split chapter: ](../en/NN-name.md#frag)
+  # -> an absolute instance URL. Diagrams aren't language-split, so both the EN
+  # and NL copies carry the source's en/ links; each tree gets its own locale
+  # prefix (NL absolute links aren't localized automatically).
+  rewrite "s{\\]\\(\\.\\./(en|nl)/\\d+-([^)#]+)\\.md(#[^)]*)?\\)}{](/development/$repo/\$2\$3)}g" \
+    "docs-development/$repo/diagrams/"*.md
+  rewrite "s{\\]\\(\\.\\./(en|nl)/\\d+-([^)#]+)\\.md(#[^)]*)?\\)}{](/nl/development/$repo/\$2\$3)}g" \
+    "$(nl_docs development)/$repo/diagrams/"*.md
 done
 
 # server admin -> architecture: ](../../architecture/en/NN-name.md#frag) -> ](/development/server/name#frag)
 rewrite 's{\]\(\.\./\.\./architecture/en/\d+-([^)#]+)\.md(#[^)]*)?\)}{](/development/server/$1$2)}g' docs-server/*.md
 rewrite 's{\]\(\.\./\.\./architecture/nl/\d+-([^)#]+)\.md(#[^)]*)?\)}{](/nl/development/server/$1$2)}g' "$(nl_docs server)/"*.md
+
+# server architecture -> admin (the reverse): ](../../admin/en/NN-name.md#frag) -> ](/server/name#frag)
+rewrite 's{\]\(\.\./\.\./admin/en/\d+-([^)#]+)\.md(#[^)]*)?\)}{](/server/$1$2)}g' docs-development/server/*.md
+rewrite 's{\]\(\.\./\.\./admin/nl/\d+-([^)#]+)\.md(#[^)]*)?\)}{](/nl/server/$1$2)}g' "$(nl_docs development)/server/"*.md
 
 # --- 6. validate -------------------------------------------------------------
 fail=0
