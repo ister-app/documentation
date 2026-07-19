@@ -31,6 +31,10 @@ cp "$downloads/player/doc/user/nl/"*.md "$(nl_docs player)/"
 mkdir -p "$(nl_docs player)/images"
 cp "$downloads/player/doc/user/images/nl/"* "$(nl_docs player)/images/" 2>/dev/null || true
 
+# home page hero <- the player home-screen screenshot, so it tracks releases
+# instead of drifting from a hand-committed static asset (src/pages/index.tsx).
+cp "$downloads/player/doc/user/images/en/home-dashboard.png" static/img/hero-home.png
+
 # server instance <- server doc/admin + the chart's Helm installation chapter,
 # slotted right after the server's own installation chapter (01-*)
 cp "$downloads/server/doc/admin/en/"*.md docs-server/
