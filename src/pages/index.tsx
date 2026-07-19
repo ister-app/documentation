@@ -11,7 +11,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig, i18n} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -36,7 +36,7 @@ function HomepageHeader() {
           </div>
           <div className={styles.heroImage}>
             <img
-              src={useBaseUrl('/img/hero-home.png')}
+              src={useBaseUrl(`/img/hero-home-${i18n.currentLocale}.png`)}
               alt={translate({
                 id: 'homepage.hero.alt',
                 message: 'Ister player home screen',
